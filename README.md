@@ -1,8 +1,6 @@
 # California Housing Price Prediction
 A machine learning project for predicting median house values in California districts using the 1990 California Census dataset. The project implements a complete workflow starting with custom NumPy-based math baselines (Normal Equation and Batch Gradient Descent) up to advanced spatial feature engineering and highly optimized Extreme Gradient Boosting (XGBoost).
 
-This project was completed as **Task 3 of Month 1** during my Machine Learning journey, showcasing rigorous dataset exploration, clean architectural pipelines, and professional model evaluation.
-
 📌 **Project Overview**
 Predicting real estate prices is a classic regression problem. The objective of this project is to build a highly accurate, robust, and generalizable model that can predict the `median_house_value` of various California districts based on demographic, economic, and geographical coordinates.
 
@@ -79,15 +77,16 @@ Champion XGBoost Regressor Implementation & Regularization Tuning
 Plotly Interactive Graphical Demonstrations (Spatial coordinates, Error Density plots)
        ↓
 Production Pipeline Serialization & Export (housing_model.joblib)
+```
 
-***🔍 Exploratory Data Analysis The project conducts detailed statistical checks:***
-
+🔍 ***Exploratory Data Analysis***
+The project conducts detailed statistical checks:
 Checking dataset dimensions and column data types.
 Running missing value analysis (uncovering 207 null cells inside total_bedrooms).
 Finding variables correlating strongly with target home value (showing median_income leads at ~0.69 correlation).
 Plotting distribution plots for the target variable to isolate boundary capping.
 
-***⚙️ Data Preprocessing & Engineering***
+⚙️ ***Data Preprocessing & Engineering***
 
 Data Leakage Mitigation: The train/test splitting was executed prior to numerical transformations.
 Missing Values: Implemented median imputation on continuous variables to handle skewed features.
@@ -99,16 +98,15 @@ Calculated direct Euclidean distances from coordinates to major centers: Los Ang
 Created structural indicators: rooms_per_household, bedrooms_per_room, population_per_household, and income_per_capita.
 Executed K-Means clustering (25 clusters) on latitude and longitude coordinates to capture micro-neighborhood parameters.
 
-***🌲 Baseline Model*** — NumPy Regression from Scratch Two mathematical techniques were built to compute parameters without using high-level libraries:
+🌲 ***Baseline Model*** — NumPy Regression from Scratch Two mathematical techniques were built to compute parameters without using high-level libraries:
 
 Analytical Normal Equation: Calculates weights directly through closed-form matrix multiplication.
 Batch Gradient Descent: Optimizes parameters iteratively over 10,000 iterations at a learning rate of 0.1.
 Both baseline methods converged to identical weights, validating the precision of our raw NumPy code.
 
-***🧠 Main Model*** — Regularized Spatial XGBoost To handle non-linear spatial boundaries, a tuned Extreme Gradient Boosting (XGBoost) regressor was implemented with heavy L1/L2 regularization (reg_alpha=10.0, reg_lambda=15.0) to secure stable generalizations.
+🧠 ***Main Model*** Regularized Spatial XGBoost To handle non-linear spatial boundaries, a tuned Extreme Gradient Boosting (XGBoost) regressor was implemented with heavy L1/L2 regularization (reg_alpha=10.0, reg_lambda=15.0) to secure stable generalizations.
 
-***📊 Model Evaluation & Comparison***
-
+📊 ***Model Evaluation & Comparison***
 Model Stage	Evaluation Type	Metric	Performance Accuracy (% / Score)
 1. NumPy Linear Regression	Test Subset	R² Accuracy	64.20%
 2. Scikit-Learn LinearRegression	Test Subset	Intercept Alignment	Perfect Match (No Difference)
@@ -117,21 +115,17 @@ Model Stage	Evaluation Type	Metric	Performance Accuracy (% / Score)
 5. Advanced XGBoost + Spatial Engineering	Test Subset	Testing R² Accuracy	85.81%
 6. Advanced XGBoost + Spatial Engineering	Test Subset	Prediction Accuracy (100 - MAPE)	84.39%
 
-***📉 Core Graphics & Interactive Plots***
-
+📉 ***Core Graphics & Interactive Plots***
 Interactive Spatial Plot: Displays a dynamic coordinate layout of California. Home pricing values are color-graded, while district population densities determine point sizes.
 Feature Importance Matrix: Charts the contribution profiles of each feature, displaying the predictive dominance of your custom engineered spatial features.
 Model Error Histogram: Displays model error distributions with integrated marginal boxes to ensure model residuals are normally distributed.
 Progress Comparison Bar Chart: Summarizes performance progression, from your standard custom NumPy baseline to optimized ensemble models.
-💾 Model & Results Export The optimized champion pipeline was successfully serialized and compressed:
 
-Serialized Model File: housing_model.joblib
-This saved file packages the entire data preprocessing transformer column stack alongside the fitted model for seamless, single-command prediction setups.
 
 👩‍💻 Author Laiba Qamar
 BSCS Student |
 Machine Learning Intern — Arch Technology
 
 📚 Acknowledgements
-Kaggle — California Housing Prices Dataset
+Kaggle — California Housing Prices Dataset |
 Google Colab Workspace Environments
